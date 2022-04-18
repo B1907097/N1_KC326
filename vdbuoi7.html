@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> buoi 7</title>
+</head>
+<body>
+	<form action="/action_pace.php">
+	<fieldset>
+		<legend>thong tin ca nhan:</legend>
+	<table  >
+		<tr>
+			<td>Hoten:</td><td><input type="text" name="Hoten"></td>
+		</tr>
+		<br>
+		<tr>
+			<td>Gioitinh:</td>
+			<td><input type="radio" name="sex" value="nam">Nam<input type="radio" name="sex" value="nu">Nu<input type="radio" name="sex" value="khac">Khac</td>
+		</tr>
+		<br>
+		<tr> 
+           	<td >So thich:<br><br><br><br></td>
+        	<td><input type="checkbox" name="st" value="yes"> nghe nhac
+            <br>
+            	<input type="checkbox" name="st" value="yes"> xem phim
+            <br>
+               	<input type="checkbox" name="st" value="yes">doc tieu thuyet
+            <br>
+               	<input type="checkbox" name="st" value="yes"> chơi game		
+		</tr>
+		<br>
+		<tr>
+			<td>MSSV:</td><td><input type="text" name="MSSV"></td>
+		</tr>
+		<br>
+		<tr>
+			<td>lop:</td><td><input type="text" name="Lop"></td>
+		</tr>
+		<br>
+		<tr>
+			<td>Bo mon:</td>
+			<td><select name=" Bo mon">
+		    	<option value="BM CN hoa hoc">BM CN hoa hoc</option>
+		    	<option value="BM tdh">BM tdh</option>
+		    	<option value="BM qlcn">BM qlcn</option>
+		    </select></td>
+		</tr>
+		<br>
+		<tr>
+			<td>Khoa:</td><td><input type="text" name="Khoa"></td>
+		</tr>
+	</table>
+	</fieldset>
+	<br><br>
+	<p><b><u><i>thong tin khac</i></u></b></p>
+				<textarea name="thong tin" rows="10" cols="30"></textarea>
+		<br><br>
+		<input type="submit" name="Submit">
+		<input type="reset" name="Reset">
+	</form>
+</body>
+</html>
