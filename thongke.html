@@ -14,7 +14,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     {
         var request = new XMLHttpRequest();
         var urlHere = "https://api.thingspeak.com/update?";
-        urlHere = "https://api.thingspeak.com/channels/1713664/fields.json";
+        urlHere = "https://api.thingspeak.com/channels/1713664feeds.json";
         request.open('GET', urlHere, true);
         request.onload = function() {
             if (request.status == 200) {
