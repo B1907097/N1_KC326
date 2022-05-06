@@ -120,6 +120,6 @@ header {
 
 .background {
   background: linear-gradient(
-    135deg, #373e59 52%,#ff0036 100%);
+    135deg,   #0000FF 10%,      #FFFF00 100%);
     };
 }
