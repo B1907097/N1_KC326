@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://doankc326.netlify.app/chartjs/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Chartjs</title>
+
+	<link rel="stylesheet" href="./Chartjs_files/index.css">
+
+	<!-- thư viện chartjs -->
+	<script src="./Chartjs_files/chart.min.js.tải xuống"></script>
+
+
+
+<style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style></head>
+
+<body _c_t_common="1">
+
+	<div class="root">
+
+		<!-- thanh điều hướng -->
+		<div id="header">
+
+
+
+	<title>Header</title>
+	
+	<link rel="shortcut icon" href="./Chartjs_files/0305-logo-ctu.png">
+	<link rel="stylesheet" href="./Chartjs_files/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="./Chartjs_files/header.css">
+
+
+
+
+
+
+	<div class="background">
+		<header>
+			<div class="header_container">
+				<div class="header_logo">
+					<a href="https://www.ctu.edu.vn/">  <img src="./Chartjs_files/0305-logo-ctu.png" alt="Logo Đại học Cần Thơ" width="35"></a>
+				</div>
+				<div class="wide">
+					<nav class="header_nav">
+						<ul>
+							<li><a href="https://doankc326.netlify.app/index.html"><i class="fas fa-home"></i>trang chủ</a></li>
+							<li><a href="https://doankc326.netlify.app/info/index.html"><i class="fas fa-users"></i>giới thiệu thành viên</a></li>
+							<li><a href="https://doankc326.netlify.app/led/index.html"><i class="far fa-lightbulb-on"></i>điều kiển led</a></li>
+							<li><a href="https://doankc326.netlify.app/chartjs/index.html"><i class="fas fa-analytics"></i>ADC Chart</a></li>
+							<li>
+								<a href="https://doankc326.netlify.app/chartjs/index.html"><i class="far fa-info-circle"></i>
+									Thông tin thêm
+								</a>
+								<ul class="sub">
+									<li><a href="https://www.ctu.edu.vn/">CTU</a></li>
+									<li><a href="https://elearning.ctu.edu.vn/">Elearning</a></li>
+									<li><a href="https://htql.ctu.edu.vn/">HTQL</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+	</div>
+
+
+
+
+</div>
+		<script src="./Chartjs_files/include-header.js.tải xuống" type="module"></script>
+
+		<!-- nội dung -->
+		<div class="content">
+			<h3 class="top_title">
+				dữ liệu điện áp thu thập từ biến trở thông qua kênh analog A0  <br>
+				sử dụng Chart.js
+			</h3><br>
+
+			<div class="box-width add-box-background centerchart">
+
+				<div id="canvas-container">
+					<canvas id="myChart" style="display: block; box-sizing: border-box; height: 330px; width: 1132px;" width="1132" height="330"></canvas>
+				</div>
+
+				<div class="colorpicker-container">
+					<div class="colorpicker" id="ff479c" style="background-color: rgb(255, 71, 156);"></div>
+					<!-- pink   -->
+					<div class="colorpicker" id="7f00ff" style="background-color: rgb(127, 0, 255);"></div>
+					<!-- violet -->
+					<div class="colorpicker active" id="010c1e" style="background-color: rgb(1, 12, 30);"></div>
+					<!-- blue   -->
+					<div class="colorpicker" id="00ff3f" style="background-color: rgb(0, 255, 63);"></div>
+					<!-- green  -->
+					<div class="colorpicker" id="fffb38" style="background-color: rgb(255, 251, 56);"></div>
+					<!-- yellow -->
+				</div>
+			</div>
+
+
+
+			<!-- fill color to color picker -->
+			<script>
+				for (const color of document.querySelectorAll('.colorpicker')) {
+					color.style.backgroundColor = '#' + color.id
+				}
+			</script>
+
+
+		</div>
+		
+		<div id="footer">
+
+
+
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Footer</title>
+
+	<style>
+		.footer-container a,
+		.footer-container a:hover,
+		.footer-container a:visited {
+			color: transparent;
+			text-decoration: none;
+		}
+
+
+		.footer-container {
+			background: linear-gradient(135deg, #373e59 52%, #ff0036 100%);
+			width: 100vw;
+			height: 30px;
+			display: flex;
+			align-items: center;
+
+		}
+
+		.footer-container p {
+			flex: 1;
+			text-align: center;
+			color: white;
+			font-size: 15px;
+			margin: 0
+		}
+
+		.footer-avt {
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
+		
+		
+		
+		.footer-avt a {
+			display: flex;
+			align-items: center;
+		}
+		
+		.teacher-avt a {
+			display: flex;
+			align-items: center;
+		}
+	
+		
+		
+
+		.footer-avt img,
+		.teacher-avt img {
+			margin-right: 30px;
+			border-radius: 50%;
+			width: 25px;
+		}
+
+		.teacher-avt img {
+			margin-left: 8px;
+
+		}
+
+		.footer-avt img:hover {
+			border: 2px solid black;
+		}
+	</style>
+
+
+
+
+
+	<div class="footer-container">
+
+		<div class="teacher-avt">
+			<a href="https://doankc326.netlify.app/info/">
+				<img src="./Chartjs_files/teacher.png" alt="">
+			</a>
+		</div>
+
+		<p id="copyright">Copyright © 2021 - Nhóm 1</p>
+
+		<div class="footer-avt">
+			<a href="https://doankc326.netlify.app/info/#kimduyen">
+				<img src="./Chartjs_files/kimduyen.jpg" alt="">
+			</a>
+			
+			<a href="https://doankc326.netlify.app/info/#kimngoc">
+				<img src="./Chartjs_files/kimngoc.jpg" alt="">
+			</a>
+			
+			<a href="https://doankc326.netlify.app/info/#longphu">
+				<img src="./Chartjs_files/longphu.jpg" alt="">
+			</a>
+			
+			<a href="https://doankc326.netlify.app/info/#minhtam">
+				<img src="./Chartjs_files/minhtam.jpg" alt="">
+			</a>
+			
+			<a href="https://doankc326.netlify.app/info/#nhutquang">
+				<img src="./Chartjs_files/nhutquang.jpg" alt="">
+			</a>
+			
+			<a href="https://doankc326.netlify.app/info/#phungtien">
+				<img src="./Chartjs_files/phungtien.jpg" alt="">
+			</a>
+		</div>
+
+
+
+	</div>
+
+
+
+
+
+
+</div>
+		<script src="./Chartjs_files/include-footer.js.tải xuống" type="module"></script>
+		
+	</div>
+
+
+	<script src="./Chartjs_files/index.js.tải xuống" type="module"></script>
+
+
+
+
+
+</body></html>
