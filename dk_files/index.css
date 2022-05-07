@@ -1,0 +1,143 @@
+.root {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.content {
+	position: relative;
+	height: 100vh;
+	flex: 1;
+	background-color: #EEEEEE
+}
+
+.centerled {
+	border: 3px solid var(--black);
+	border-radius: 10px;
+	margin: 0;
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	width: 200px;
+	transform: translate(-50%, -50%);
+	background: linear-gradient(135deg, #b4bfec 52%, #eeabb9 100%);
+}
+
+.info-table {
+	margin: 10px auto 0;
+	width: 95%;
+	background-color: white;
+}
+
+.info-table td {
+	width: 50%;
+}
+
+.info-table,
+.info-table th,
+.info-table td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.info-table {
+	text-align: center
+}
+
+.text-align-left {
+	text-align: left
+}
+
+.form-leds img {
+	cursor: pointer;
+}
+
+.form-leds {
+	margin: 0 auto 20px;
+	margin-top: 10px;
+	width: 95%;
+
+	display: flex;
+	flex-flow: column nowrap;
+
+	border: 1px solid black;
+}
+
+
+
+
+.form-leds .btn {
+
+	border: none;
+	background-color: tomato;
+	border-bottom: 5px solid rgb(188, 189, 159);
+	border-radius: 80px;
+	border-style: inset;
+	flex: 1;
+}
+
+
+.form-leds .btn:first-child {
+	border-right: 0.5px solid rgb(188, 189, 159);
+}
+
+.form-leds .btn:last-child {
+	border-left: 0.5px solid rgb(188, 189, 159);
+}
+
+
+h1 {
+	text-align: center;
+	text-shadow: rgb(129 116 245) 0px 5px 15px;
+	color: red;
+}
+
+.form-leds .leds-btn {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-leds img {
+	width: 60px;
+	height: auto;
+}
+
+.input-group button {
+	color: black;
+}
+
+
+
+
+.box-width {
+	width: 60%;
+}
+
+@media only screen and (min-width: 1920px) {
+	.box-width {
+		width: 75%;
+	}
+
+	.form-leds img {
+		width: 100px;
+		height: auto;
+	}
+}
+
+.form-leds .slider {
+	flex: 1;
+	margin-right: 5px;
+
+}
+
+.form-leds .leds-slider {
+
+	padding-top: 10px;
+	border-top: 1px solid black;
+}
+
+.rangeIndicator {
+	background-color: transparent;
+	border: none;
+	width: 45px;
+}
