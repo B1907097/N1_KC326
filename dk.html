@@ -12,11 +12,21 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
 <script>
 // ham nhap xuat
-  function nhapHang(dat,b)
+  function Nhietdo(dat,b)
     {
         var request = new XMLHttpRequest();
-        var urlHere = "https://api.thingspeak.com/update?";
-        
+        var urlHere = "https://api.thingspeak.com/update?";        
+        urlHere = urlHere + "api_key=B7YEB991P32QMK16&field3="+ dat;
+        request.open('GET', urlHere, true);
+        request.send();
+        setTimeout(function(){  
+          b();
+        }, 5000); 
+    }
+    function (dat,b)
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?";        
         urlHere = urlHere + "api_key=B7YEB991P32QMK16&field3="+ dat;
         request.open('GET', urlHere, true);
         request.send();
@@ -113,7 +123,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 							<li><a href="https://b1907097.github.io/N1_KC326/index.html"><i class="fa fa-fw fa-home"></i>trang chủ</a></li>
 				            <li><a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">giới thiệu thành viên</a></li>
 				            <li><a href="https://b1907097.github.io/N1_KC326/dk.html">điều khiển đèn, HT phun sương </a></li>
-				            <li><a href="https://b1907097.github.io/N1_KC326/index.html">Nhiệt độ, độ ẩm Chart</a></li>
+				            <li><a href="https://b1907097.github.io/N1_KC326/Chartjs.html">Nhiệt độ, độ ẩm Chart</a></li>
 				            <li><a href="#">    <i class="fa fa-caret-down"></i>Thông tin thêm  </a>
 								<ul class="sub">
 									<li><a href="https://www.ctu.edu.vn/">CTU</a></li>
@@ -171,24 +181,24 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 					<table><tbody><tr><td>
 					<div class="input-group mb-3">
 						<p><b><u><i>Nhiệt độ (độ C)</i></u></b></p>
-							<textarea name="nhietdo" rows="1" cols="10"></textarea>
-							<br><br>
-							<input type="submit" name="Submit">
-							<input type="reset" name="Reset">
+							 <br> <br>
+				        <label for="Nhietdo">Nhiêt độ </label>
+				        <input type="text" id="nhap" value="0"> <br> <br>
+				        <input type = "button" value = "Submit" onclick = "nhapHang(form1.nhap.value,thongKe)"> &nbsp; &nbsp;
+				        
 						</div></td>
 						<td>
 						<div class="input-group mb-3">
 						<p><b><u><i>Độ ẩm (%)</i></u></b></p>
-							<textarea name="doam" rows="1" cols="10"></textarea>
-							<br><br>
-							<input type="submit" name="Submit">
-							<input type="reset" name="Reset">
+						<br> <br>
+							 <label for="Doam">Độ ẩm</label>
+				       <input type="text" id="xuat" value="0"> <br> <br>
+				       <input type = "button" value = "Submit" onclick = "xuatHang(form1.xuat.value,thongKe)">
 					</div></td>
 				</tr>
 				</tbody></table>
 
 					<div class="leds-btn input-group input-group-sm mb-3">
-
 						<img class="led-btn" id="led1" src="./dk_files/lightbulb-off.svg" alt="">
 						<img class="led-btn" id="led2" src="./dk_files/ps.png" alt="">
 					</div>
