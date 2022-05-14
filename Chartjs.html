@@ -1,20 +1,131 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Chartjs</title>
-
 	<link rel="stylesheet" href="./Chartjs_files/index.css">
 
 	<!-- thư viện chartjs -->
-	<script src="./Chartjs_files/chart.min.js.taixuong"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+	</script> 
 
+<script>
+  function thongKe()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?";
+        urlHere = "https://api.thingspeak.com/channels/1693805/feeds.json";
+        request.open('GET', urlHere, true);
+        request.onload = function() {
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                //console.log(data);
+                var length = data.feeds.length;  //kich thuoc du lieu
+                //loc bo cac phan tu null
+                dataTemp = new Array();
+                dataHumi = new Array();
+                for(i=0;i<length;i++){
+                  if (data.feeds[i].field1 != null){
+                    dataTemp.push(data.feeds[i].field1);
+                  }
+                  if (data.feeds[i].field2 != null){
+                    dataHumi.push(data.feeds[i].field2);
+                  }
+                }
+               
+                //Ve bieu đồ nhập xuất
+                var yTemp = new Array();
+                var yHumi = new Array();
+                var xTemp = new Array();
+                var xHumi = new Array();
+                for(var i=0;i<length;i++){
+                  if (data.feeds[i].field1 != null){
+                    yTemp.push(data.feeds[i].field1);
+                    xTemp.push(data.feeds[i].created_at);
+                  }
+                  if (data.feeds[i].field2 != null){
+                    yHumi.push(data.feeds[i].field2);
+                    xHumi.push(data.feeds[i].created_at);
+                  }
+                }
+                //bieu đồ
+                new Chart("chartTemp", {
+                    type: "bar",
+                    data: {
+                        labels: xTemp,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "red",
+                            label: "Nhiệt độ của máy ấp trứng ",
+                            data: yTemp
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                              display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                              display: true,
+                              ticks: {
+                                beginAtZero: true,
+                                //max: (yTemp.max)
+                              }
+                            }]
+                        }
+                    }
+                });
+                new Chart("chartHumi", {
+                    type: "bar",
+                    data: {
+                        labels: xHumi,
+                        datasets: [
+                        {
+                            fill: false,
+                            backgroundColor: "blue",
+                            label: "Độ ẩm cảu máy ấp trứng ",
+                            data: yHumi
+                        }, 
+                        ]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: true,
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    //max: (yHumi.max)
+                                }
+                            }]
+                        }
+                    }
+                });
 
+            } else {
+            // We reached our target server, but it returned an error
+            }
+        };
+        request.send();
+
+        
+        //request.open('GET', urlHere, true);
+        //request.send();
+    }
+</script>  
 
 <style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style></head>
 
-<body _c_t_common="1">
+<body onload="thongKe()">
 
 	<div class="root">
 
@@ -27,7 +138,6 @@
 	
 	<link rel="shortcut icon" href="./Chartjs_files/0305-logo-ctu.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
 	<link rel="stylesheet" href="./Chartjs_files/header.css">
 
 
@@ -46,8 +156,12 @@
 						<ul>
 							<li><a href="https://b1907097.github.io/N1_KC326/index.html"><i class="fa fa-fw fa-home"></i>trang chủ</a></li>
 				            <li><a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">giới thiệu thành viên</a></li>
-				            <li><a href="https://b1907097.github.io/N1_KC326/dk.html">điều khiển đèn, HT phun sương </a></li>
-				            <li><a href="https://b1907097.github.io/N1_KC326/Chartjs.html">Nhiệt độ, độ ẩm Chart</a></li>
+				            <li><a href="#">    <i class="fa fa-caret-down"></i> Điều khiển & theo dõi Hệ thống  </a>
+								<ul class="sub">
+									<li><a href="https://b1907097.github.io/N1_KC326/dk.html">thiết lập thông số </a></li>
+				            		<li><a href="https://b1907097.github.io/N1_KC326/Chartjs.html">Nhiệt độ, độ ẩm Chart</a></li>
+				            	</ul>
+				            
 				            <li><a href="#">    <i class="fa fa-caret-down"></i>Thông tin thêm  </a>
 								<ul class="sub">
 									<li><a href="https://www.ctu.edu.vn/">CTU</a></li>
@@ -74,25 +188,13 @@
 				thông số nhiệt, độ ẩm thu thập từ máy ấp trứng <br>
 				sử dụng Chart.js
 			</h3><br>
-
 			<div class="box-width add-box-background centerchart">
 
 				<div id="canvas-container">
-					<canvas id="myChart" style="display: block; box-sizing: border-box; height: 330px; width: 1132px;" width="1132" height="330"></canvas>
+					<canvas id="chartTemp" style="display: block; box-sizing: border-box; height: 330px; width: 700px;" width="1650" height="330"></canvas>
+					<canvas id="chartHumi" style="display: block; box-sizing: border-box; height: 330px; width: 700px;" width="1650" height="330"></canvas>
 				</div>
 
-				<div class="colorpicker-container">
-					<div class="colorpicker" id="ff479c" style="background-color: rgb(255, 71, 156);"></div>
-					<!-- pink   -->
-					<div class="colorpicker" id="7f00ff" style="background-color: rgb(127, 0, 255);"></div>
-					<!-- violet -->
-					<div class="colorpicker active" id="010c1e" style="background-color: rgb(1, 12, 30);"></div>
-					<!-- blue   -->
-					<div class="colorpicker" id="00ff3f" style="background-color: rgb(0, 255, 63);"></div>
-					<!-- green  -->
-					<div class="colorpicker" id="fffb38" style="background-color: rgb(255, 251, 56);"></div>
-					<!-- yellow -->
-				</div>
 			</div>
 
 

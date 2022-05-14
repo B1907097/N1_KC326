@@ -27,7 +27,7 @@
 	height: 1000px;
 	transform: translate(-50%, -50%);
 	background: linear-gradient(
-		135deg, #b4bfec 52%,#eeabb9 100%);
+		135deg, #b4bfec 100%,#eeabb9 0%);
 }
 .top_title {
 	text-align: center;
@@ -68,7 +68,7 @@
 
 .box-width {
 	width: 90%;
-	height: 75%;
+	height: 82%;
 	margin: 45px auto;
 }
 
