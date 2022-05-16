@@ -11,34 +11,43 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script>
-// ham nhap xuat
-  function Nhietdo(dat,b)
-    {
-        var request = new XMLHttpRequest();
-        var urlHere = "https://api.thingspeak.com/update?";        
-        urlHere = urlHere + "api_key=B7YEB991P32QMK16&field3="+ dat;
-        request.open('GET', urlHere, true);
-        request.send();
-        setTimeout(function(){  
-          b();
-        }, 5000); 
-    }
-    function (dat,b)
-    {
-        var request = new XMLHttpRequest();
-        var urlHere = "https://api.thingspeak.com/update?";        
-        urlHere = urlHere + "api_key=B7YEB991P32QMK16&field3="+ dat;
-        request.open('GET', urlHere, true);
-        request.send();
-        setTimeout(function(){  
-          b();
-        }, 5000); 
-    }
-    function thongKe()
+  function nhapHang(dat,b)
     {
         var request = new XMLHttpRequest();
         var urlHere = "https://api.thingspeak.com/update?";
-        urlHere = "https://api.thingspeak.com/channels/1713664/fields.json";
+        
+        urlHere = urlHere + "api_key=AXM253ZTENN1LOYE&field3="+ dat;
+       if (parseInt(dat)<=39) {
+          request.open('GET', urlHere, true);
+          request.send();          
+        }else{
+          alert("Hàng không đủ để xuất!");
+        }
+        setTimeout(function(){
+          b();
+        },100);
+    }
+  function xuatHang(dat,b)
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?";
+        urlHere = urlHere + "api_key=AXM253ZTENN1LOYE&field4="+ dat;
+        
+        if (parseInt(dat)>55){
+          request.open('GET', urlHere, true);
+          request.send();          
+        }else{
+          alert("Độ ẩm không được bé hơn 55 và lớn hơn 85!");
+        }
+        setTimeout(function(){
+          b();
+        },100);
+    }
+  function thongKe()
+    {
+        var request = new XMLHttpRequest();
+        var urlHere = "https://api.thingspeak.com/update?";
+        urlHere = "https://api.thingspeak.com/channels/1693805/feeds.json";
         request.open('GET', urlHere, true);
         request.onload = function() {
             if (request.status == 200) {
@@ -46,29 +55,28 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 //console.log(data);
                 var length = data.feeds.length;  //kich thuoc du lieu
                 //loc bo cac phan tu null
-                dataNhap = new Array();
-                dataXuat = new Array();
+                dataTemp = new Array();
+                dataHumi = new Array();
                 for(i=0;i<length;i++){
                   if (data.feeds[i].field3 != null){
-                    dataNhap.push(data.feeds[i].field3);
+                    dataTemp.push(data.feeds[i].field3);
                   }
                   if (data.feeds[i].field4 != null){
-                    dataXuat.push(data.feeds[i].field4);
+                    dataHumi.push(data.feeds[i].field4);
                   }
                 }
-                // hiển thị số lượng tồn kho
-                tongXuat=0, tongNhap=0, tonKho=0;
-                //tính tổng xuất
-                for(i=0;i<dataXuat.length;i++){
-                  tongXuat += parseInt(dataXuat[i]);
+                // hiển thị số lượng 
+                Humi=0, Temp=0;
+                //tính do am
+                for(i=0;i<dataHumi.length;i++){
+                  Humi = parseInt(dataHumi[i]);
                 }
-                //tính tổng nhập
-                for(i=0;i<dataNhap.length;i++){
-                  tongNhap += parseInt(dataNhap[i]);
-                }
-                //tính tồn kho
-                tonKho = tongNhap - tongXuat;
-                document.getElementById("thongke").innerHTML = "Tổng số sản phẩm đang trong kho:"+tonKho;
+                //tính nhiet đo
+                for(i=0;i<dataTemp.length;i++){
+                  Temp = parseInt(dataTemp[i]);
+                }                
+                document.getElementById("thongke1").innerHTML = "Nhiệt độ hiện tại: " +Temp+"ºC " ;
+               	document.getElementById("thongke2").innerHTML = "Độ ẩm hiện tại: " +Humi+"%";
                 //Ve bieu đồ nhập xuất
 
             } else {
@@ -83,10 +91,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     }
 </script> 
 	<link rel="stylesheet" href="./dk_files/index.css">
-	<link rel="stylesheet" href="./dk_files/rangeSlider.css">
-	
-
-
 
 <style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style></head>
 
@@ -105,12 +109,6 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 	<link rel="shortcut icon" href="./dk_files/0305-logo-ctu.png">
 
 	<link rel="stylesheet" href="./dk_files/header.css">
-
-
-
-
-
-
 	<div class="background">
 		<header>
 			<div class="header_container">
@@ -152,63 +150,65 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 		<div class="content">
 
 			<h1 class="add-title"><b><br>ĐIỀU KHIỂN ĐÈN NHIỆT VÀ HỆ THÔNG PHUN SƯƠNG</b></h1>
-
 			<div class="box-width centerled add-box-background ">
 
 
-				<p></p><table class="info-table">
-					<tbody><tr>
+				<table class="info-table">
+					<tbody>
+						<tr>
+							<td>
+								<p style="font-size: 150%; color:#990000">
+											
+								<b> CÀI ĐẶT NHIỆT ĐỘ</b></p></td>
+							<td><p style="font-size: 150%; color:#990000">
+							<b>CÀI ĐẶT ĐỘ ẨM</b></p></td>								
+						<tr>
+							<tr>
+							<td>
+								<p style="font-size: 150%; color:#000077">											
+									<b id="thongke1"> </b></p></td>
+							<td><p style="font-size: 150%; color:#000077">
+							<b id="thongke2"></b></p></td>								
+						</tr>
 						<td>
-							<p style="font-size: 150%; color:#990000">
+							<ul
+								<h4> Nhập nhiệt độ và nhấn Submit.</h4>
+								<br>
+							</ul>
+						</td>
+						<td>
+							<ul 
+								<h4> <br> Nhập độ ẩm và nhấn Submit.</h4>
+									<br><br>
+							</ul>
+						</td>
+					</tr>
 										
-							<b> CÀI ĐẶT NHIỆT ĐỘ</b></p></td>
-						<td><p style="font-size: 150%; color:#990000">
-						<b>CÀI ĐẶT ĐỘ ẨM</b></p></td>
+				<tr>
+							<td>
+								
+								<form name="form1">
+								        <br><br>
+								        <label for="Nhap"><b>Temperature</b></label>
+								        <input type="text" id="nhap" value="0"> <br> <br>								        
+								        <input type = "button" value = "Submit" onclick = "nhapHang(form1.nhap.value,thongKe)">
+								<br><br>
+							</td>
+							<td>		
+								 <br><br>
+								        <label for="Xuat"><b>Humidity</b></label>
+								        <input type="text" id="xuat" value="0"> <br> <br>								
+								        <input type = "button" value = "Submit " onclick = "xuatHang(form1.xuat.value,thongKe)">
+								   <br><br>
+								  </form>
+							
+							</td>
 							
 					</tr>
-					<tr>
-						<td>
-							<ul 
-								<li> Nhập nhiệt độ và nhấn Submit.</li>
-								
-							</ul>
-						</td>
-						<td>
-							<ul 
-								<li>  Nhập độ ẩm và nhấn Submit.</li>
-							</ul>
-						</td>
-					</tr>
-				</tbody></table>
-
-				<form class="form-leds">
-					<table><tbody><tr><td>
-					<div class="input-group mb-3">
-						<p><b><u><i>Nhiệt độ (độ C)</i></u></b></p>
-							 <br> <br>
-				        <label for="Nhietdo">Nhiêt độ </label>
-				        <input type="text" id="nhap" value="0"> <br> <br>
-				        <input type = "button" value = "Submit" onclick = "nhapHang(form1.nhap.value,thongKe)"> &nbsp; &nbsp;
-				        
-						</div></td>
-						<td>
-						<div class="input-group mb-3">
-						<p><b><u><i>Độ ẩm (%)</i></u></b></p>
-						<br> <br>
-							 <label for="Doam">Độ ẩm</label>
-				       <input type="text" id="xuat" value="0"> <br> <br>
-				       <input type = "button" value = "Submit" onclick = "xuatHang(form1.xuat.value,thongKe)">
-					</div></td>
-				</tr>
-				</tbody></table>
-
-					<div class="leds-btn input-group input-group-sm mb-3">
-						<img class="led-btn" id="led1" src="./dk_files/lightbulb-off.svg" alt="">
-						<img class="led-btn" id="led2" src="./dk_files/ps.png" alt="">
-					</div>
-
-
-				</form>
+				
+					</tbody>
+				</table>
+				
 
 			</div>
 
