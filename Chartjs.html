@@ -3,6 +3,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Chartjs</title>
+   <link rel="icon" type="image/x-icon" href="./Trangchu_files/favorite.png">
 	<link rel="stylesheet" href="./Chartjs_files/index.css">
 
 	<!-- thư viện chartjs -->
@@ -66,14 +67,14 @@
                     options: {
                         plugins:{
                             legend: {
-                              display: true,
+                              display: false,
                             }
                         },
                         scales: {
                             yAxes: [{
                               display: true,
                               ticks: {
-                                beginAtZero: true,
+                                beginAtZero: false,
                                 //max: (yTemp.max)
                               }
                             }]
@@ -103,7 +104,7 @@
                             yAxes: [{
                                 display: true,
                                 ticks: {
-                                    beginAtZero: true,
+                                    beginAtZero:false,
                                     //max: (yHumi.max)
                                 }
                             }]
@@ -191,8 +192,8 @@
 			<div class="box-width add-box-background centerchart">
 
 				<div id="canvas-container">
-					<canvas id="chartTemp" style="display: block; box-sizing: border-box; height: 330px; width: 700px;" width="1650" height="330"></canvas>
-					<canvas id="chartHumi" style="display: block; box-sizing: border-box; height: 330px; width: 700px;" width="1650" height="330"></canvas>
+					<canvas id="chartTemp" style="display: block; box-sizing: border-box; height: 330px; width: 700px;" width="1850" height="330"></canvas>
+					<canvas id="chartHumi" style="display: block; box-sizing: border-box; height: 330px; width: 700px;" width="1850" height="330"></canvas>
 				</div>
 
 			</div>
