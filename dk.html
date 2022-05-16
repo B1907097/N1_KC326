@@ -18,12 +18,12 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         var request = new XMLHttpRequest();
         var urlHere = "https://api.thingspeak.com/update?";
         
-        urlHere = urlHere + "api_key=AXM253ZTENN1LOYE&field3="+ dat;
-       if (parseInt(dat)<=39) {
+        urlHere = urlHere + "api_key=B7YEB991P32QMK16&field3="+ dat;      
+         if (parseInt(dat)<=39) {
           request.open('GET', urlHere, true);
           request.send();          
         }else{
-          alert("Hàng không đủ để xuất!");
+          alert("Nhiệt độ không được bé hơn 35 và lớn hơn 39!");
         }
         setTimeout(function(){
           b();
@@ -33,7 +33,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     {
         var request = new XMLHttpRequest();
         var urlHere = "https://api.thingspeak.com/update?";
-        urlHere = urlHere + "api_key=AXM253ZTENN1LOYE&field4="+ dat;
+        urlHere = urlHere + "api_key=B7YEB991P32QMK16&field4="+ dat;
         
         if (parseInt(dat)>55){
           request.open('GET', urlHere, true);
@@ -49,7 +49,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     {
         var request = new XMLHttpRequest();
         var urlHere = "https://api.thingspeak.com/update?";
-        urlHere = "https://api.thingspeak.com/channels/1693805/feeds.json";
+        urlHere = "https://api.thingspeak.com/channels/1713664/feeds.json";
         request.open('GET', urlHere, true);
         request.onload = function() {
             if (request.status == 200) {
@@ -86,6 +86,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             }
         };
         request.send();
+        
 
         
         //request.open('GET', urlHere, true);
@@ -96,7 +97,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
 <style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style></head>
 
-<body _c_t_common="1" onload="thongKe()">
+<body _c_t_common="1" onload="thongKe()" >
 
 
 	<div class="root">
@@ -121,18 +122,21 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 					<nav class="header_nav">
 						<ul>
 							<li><a href="https://b1907097.github.io/N1_KC326/index.html"><i class="fa fa-fw fa-home"></i>trang chủ</a></li>
-				            <li><a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">giới thiệu thành viên</a></li>
-				            <li><a href="#">    <i class="fa fa-caret-down"></i> Điều khiển & theo dõi Hệ thống  </a>
-								<ul class="sub">
-									<li><a href="https://b1907097.github.io/N1_KC326/dk.html">thiết lập thông số </a></li>
-				            		<li><a href="https://b1907097.github.io/N1_KC326/Chartjs.html">Nhiệt độ, độ ẩm Chart</a></li>
-				            	</ul>
-				            
-				            <li><a href="#">    <i class="fa fa-caret-down"></i>Thông tin thêm  </a>
-								<ul class="sub">
-									<li><a href="https://www.ctu.edu.vn/">CTU</a></li>
-									<li><a href="https://elearning.ctu.edu.vn/">Elearning</a></li>
-									<li><a href="https://htql.ctu.edu.vn/">HTQL</a></li>
+                    <li><a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html"><i class="fa fa-user-plus" aria-hidden="true"></i>thành viên</a></li>
+                    <li><a href="https://b1907097.github.io/N1_KC326/ytuong.html"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>ý tưởng thực hiện</a></li>
+                    <li><a href="#">    <i class="fa fa-caret-down"></i> Điều khiển & theo dõi Hệ thống  </a>
+                <ul class="sub">
+                  <li><a href="https://b1907097.github.io/N1_KC326/dk.html"><i class="fa fa-cog" aria-hidden="true"></i>thiết lập thông số </a></li>
+                        <li><a href="https://b1907097.github.io/N1_KC326/Chartjs.html"><i class="fa fa-line-chart" aria-hidden="true"></i>Nhiệt độ, độ ẩm Chart</a></li>
+                      </ul>
+                      <li><a href="https://b1907097.github.io/N1_KC326/lien_he.html"><i class="fa fa-phone" aria-hidden="true"></i>liên Hệ</a></li>
+                    
+                    <li><a href="#">    <i class="fa fa-caret-down"></i>Mở rộng  </a>
+                <ul class="sub">
+                  <li><a href="https://www.ctu.edu.vn/">CTU</a></li>
+                  <li><a href="https://elearning.ctu.edu.vn/">Elearning</a></li>
+                  <li><a href="https://htql.ctu.edu.vn/">HTQL</a></li>
+
 								</ul>
 							</li>
 						</ul>
@@ -180,7 +184,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 						</td>
 						<td>
 							<ul 
-								<h4> <br> Nhập độ ẩm và nhấn Submit.</h4>
+							<h4> <br> Nhập độ ẩm và nhấn Submit.</h4>
 									<br><br>
 							</ul>
 						</td>
@@ -238,7 +242,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 		.footer-container {
 			background: linear-gradient(135deg,   #0000FF 10%,      #FFFF00 100%);
 			width: 100vw;
-			height: 30px;
+			height: 45px;
 			display: flex;
 			align-items: center;
 
@@ -306,24 +310,24 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 
 	    <div class="footer-avt">
 	          
-	      <a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">
-	        <img src="./Trangchu_files/cham.jpg" >
-	      </a>
-	      
-	      <a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">
-	        <img src="./Trangchu_files/han.jpg" >
-	      
-	      <a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">
-	        <img src="./Trangchu_files/thien.jpg">
-	      </a>
-	      
-	      <a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">
-	        <img src="./Trangchu_files/vinh.jpg" >
-	      </a>
-	      
-	      <a href="https://b1907097.github.io/N1_KC326/gioithieuthanhvien.html">
-	        <img src="./Trangchu_files/tien.jpg" >
-	      </a>
+	       <a href="https://www.facebook.com/cham.2890">
+        <img src="./Trangchu_files/cham.jpg" >
+      </a>
+      
+      <a href="https://www.facebook.com/han.kieu.397">
+        <img src="./Trangchu_files/han.jpg" >
+      
+      <a href="https://www.facebook.com/profile.php?id=100009103916735">
+        <img src="./Trangchu_files/thien.jpg">
+      </a>
+      
+      <a href="https://www.facebook.com/vinh.nguyenvan.161/">
+        <img src="./Trangchu_files/vinh.jpg" >
+      </a>
+      
+      <a href="https://www.facebook.com/profile.php?id=100015979958185">
+        <img src="./Trangchu_files/tien.jpg" >
+      </a>
 		</div>
 
 
