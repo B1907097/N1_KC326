@@ -19,7 +19,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
         var urlHere = "https://api.thingspeak.com/update?";
         
         urlHere = urlHere + "api_key=B7YEB991P32QMK16&field3="+ dat;      
-         if (parseInt(dat)<=39) {
+         if (parseInt(dat)<=40) {
           request.open('GET', urlHere, true);
           request.send();          
         }else{
@@ -45,7 +45,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
           b();
         },100);
     }
-  function thongKe()
+    function thongKe()
     {
         var request = new XMLHttpRequest();
         var urlHere = "https://api.thingspeak.com/update?";
@@ -59,7 +59,15 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 //loc bo cac phan tu null
                 dataTemp = new Array();
                 dataHumi = new Array();
+                dataT = new Array();
+                dataH = new Array();
                 for(i=0;i<length;i++){
+                  if (data.feeds[i].field1 != null){
+                    dataT.push(data.feeds[i].field1);
+                  }
+                  if (data.feeds[i].field2 != null){
+                    dataH.push(data.feeds[i].field2);
+                  }
                   if (data.feeds[i].field3 != null){
                     dataTemp.push(data.feeds[i].field3);
                   }
@@ -68,7 +76,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                   }
                 }
                 // hiển thị số lượng 
-                Humi=0, Temp=0;
+                Humi=0, Temp=0; H=0, T=0;
                 //tính do am
                 for(i=0;i<dataHumi.length;i++){
                   Humi = parseInt(dataHumi[i]);
@@ -76,9 +84,18 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 //tính nhiet đo
                 for(i=0;i<dataTemp.length;i++){
                   Temp = parseInt(dataTemp[i]);
-                }                
-                document.getElementById("thongke1").innerHTML = "Nhiệt độ hiện tại: " +Temp+"ºC " ;
-               	document.getElementById("thongke2").innerHTML = "Độ ẩm hiện tại: " +Humi+"%";
+                }      
+                for(i=0;i<dataH.length;i++){
+                  H = parseInt(dataH[i]);
+                }
+                for(i=0;i<dataT.length;i++){
+                  T = parseInt(dataT[i]);
+                }   
+
+                document.getElementById("thongke1").innerHTML = "Nhiệt độ cài đặt: " +Temp+"ºC " ;
+               	document.getElementById("thongke2").innerHTML = "Độ ẩm cài đặt: " +Humi+"%";
+               	document.getElementById("trangthai1").innerHTML = "Đèn nhiệt: " +T+"  (1:bật/0:tat) " ;
+               	document.getElementById("trangthai2").innerHTML = "Máy phun sương: " +H+"  (1:bật/0:tat)";
                 //Ve bieu đồ nhập xuất
 
             } else {
@@ -171,10 +188,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 						<tr>
 							<tr>
 							<td>
-								<p style="font-size: 150%; color:#000077">											
-									<b id="thongke1"> </b></p></td>
-							<td><p style="font-size: 150%; color:#000077">
-							<b id="thongke2"></b></p></td>								
+								<p style="font-size: 120%; color:#000077">											
+									<b id="thongke1"> </b></p></td>								
+							<td><p style="font-size: 120%; color:#000077">
+							<b id="thongke2"></b></p></td>														
+						</tr>
+							<tr>
+							<td>
+								<p style="font-size: 120%; color:#000077">											
+									<b id="trangthai1"> </b></p></td>
+							<td><p style="font-size: 120%; color:#000077">
+							<b id="trangthai2"></b></p></td>								
 						</tr>
 						<td>
 							<ul
